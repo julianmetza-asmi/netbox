@@ -2068,6 +2068,12 @@ class VirtualChassisFilterSet(NetBoxModelFilterSet):
         to_field_name='slug',
         label=_('Tenant (slug)'),
     )
+    tenant_kdnr = django_filters.ModelMultipleChoiceFilter(
+        field_name='master__tenant__slug',
+        queryset=Tenant.objects.all(),
+        to_field_name='cf_kdnr',
+        label=_('Tenant (KDNR)'),
+    )
 
     class Meta:
         model = VirtualChassis
